@@ -11,7 +11,26 @@ function App() {
 
     fetch(url)
       .then((response) => response.json())
-      .then((result) => setUrlList(result));
+      .then((result) => {
+
+        ////////////// Filtered by Date
+
+
+        let startDate = new Date("2022-11-01");
+        let endDate = new Date("2022-11-30");
+       
+        let resultProductData = result.filter( order => {
+          let date = new Date( order.date_created);
+          return (date >= startDate && date <= endDate);
+        });
+      
+        setUrlList(resultProductData)
+
+        ////////// 
+
+       // setUrlList(result)
+
+      });
   } 
 
   function addToDatabase() {
@@ -42,15 +61,21 @@ function App() {
       <img src="https://lcmed.de/wp-content/uploads/2022/10/logo-300x100-1.png" alt="Logo" />
         <h3 className="erp-dashboard"> ERP Dashboard</h3>
         <button onClick={() => callDatabase()}>Get order data</button>
-        <ol> {urlList ? urlList.map((item) =>
-           <li> 
-            
-            { "Order id -" +  item.id + ", Status - " + item.status + ", Total - "+ item.total + " €," + " Order Created - " + item.date_created + ", Order Shipped - " + item.date_completed}
+        <div className="orderTableParent"> {urlList ? urlList.map((item) =>
 
-           </li>
+           <div className="orderDataTable"> 
+
+              <div> <span> Order id - </span>  { "#" + item.id } </div>
+              <div> <span> Status - </span>{ item.status }</div>
+              <div> <span> Total - </span>{ item.total }</div>
+              <div> <span> Order Created - </span>{ item.date_created.replace("T", " Time ") }</div>
+              <div> <span> Order Shipped - </span>{ item.date_completed? item.date_completed.replace("T", " Time "): item.shipping_status}</div>
+  
+           </div>
 
            ) : ""} 
-        </ol>
+
+        </div>
       </header>
     </div>
   );
