@@ -37,12 +37,17 @@
 }
 
 button, input{
+  margin-top: 10px;
   font-size: large;
   padding: 5px 20px;
   background-color:#1896d0;
   cursor: pointer;
   border-radius: 5px;
   text-shadow: black;
+}
+
+.label{
+  color: #1eabec;
 }
 
 button:hover{
