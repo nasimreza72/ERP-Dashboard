@@ -6,24 +6,21 @@ function App() {
   const [helperVeribale, setHelperVeriable] = useState(false);
   const [url, setUrl] = useState("");
 
-  const dateRef = useRef();
+  const dateRef = useRef("Please add date");
 
   function callDatabase() {
 
   setHelperVeriable(true)
 
-   // let url = "http://localhost:3001/api/getUrl/";
    let url = "https://staging31.henrikk.sg-host.com/two/en/wp-json/wc/v3/orders?consumer_key=ck_b51b515df3f1dad1e258662058d23e36d856f673&consumer_secret=cs_17ca613d0bb25fcd36852fb305a4e14925c2be08";
 
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
 
-        console.log(dateRef.current.value)
-
         ////////////// Filtered by Date
 
-        let startDate = new Date(dateRef.current.value); //Date formet (year-month-date)
+        let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
         let endDate = new Date(); // will get automatically today's date or else type date manually
        
         let resultProductData = result.filter( order => {
@@ -39,6 +36,45 @@ function App() {
 
       });
   } 
+
+////// Call database for shipped ored
+
+
+function callForCompletedOrderData() {
+
+  setHelperVeriable(true)
+
+   let url = "https://staging31.henrikk.sg-host.com/two/en/wp-json/wc/v3/orders?consumer_key=ck_b51b515df3f1dad1e258662058d23e36d856f673&consumer_secret=cs_17ca613d0bb25fcd36852fb305a4e14925c2be08";
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+
+        ////////////// Filtered by Date
+
+       let startDate = new Date(dateRef.current.value ? dateRef.current.value : null ); //Date formet (year-month-date)
+       let endDate = new Date(); // will get automatically today's date or else type date manually
+       
+        let getCompletedOrderData = result.filter( order => {
+          return order.status == "completed"
+        });
+
+        let getCompletedOrderDataFilteredByDate = getCompletedOrderData.filter( order => {
+          let date = new Date( order.date_created );
+          return (date >= startDate && date <= endDate);
+  
+          });
+      
+        setUrlList(getCompletedOrderDataFilteredByDate)
+
+        ////////// 
+
+       // setUrlList(result)
+
+      });
+  } 
+
+//////////
 
   function addToDatabase() {
     let sendUrl = {
@@ -71,7 +107,10 @@ function App() {
         <div className="label">From</div>
         <input type="date" ref={dateRef}></input>
 
-        <button onClick={() => callDatabase()}>Get order data</button>
+       <div className="buttonList">
+        <button onClick={() => callDatabase()}>Get all order data</button>
+        <button onClick={() => callForCompletedOrderData()}>Delivered order data</button>
+       </div>
 
         <div className="orderTableParent">
 

@@ -36,6 +36,10 @@
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.buttonList{
+  display: flex;
+}
+
 button, input{
   margin-top: 10px;
   font-size: large;
