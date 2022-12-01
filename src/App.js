@@ -67,7 +67,7 @@ function callForCompletedOrderData() {
       
         setUrlList(getCompletedOrderDataFilteredByDate)
 
-        ////////// 
+        ///////////////
 
        // setUrlList(result)
 
