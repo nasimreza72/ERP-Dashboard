@@ -62,17 +62,32 @@ function callForCompletedOrderData() {
         let getCompletedOrderDataFilteredByDate = getCompletedOrderData.filter( order => {
           let date = new Date( order.date_created );
           return (date >= startDate && date <= endDate);
-  
           });
       
         setUrlList(getCompletedOrderDataFilteredByDate)
 
-        ///////////////
-
-       // setUrlList(result)
-
       });
   } 
+
+  if(urlList && helperVeribale == true){
+    
+
+        fetch('http://localhost:3001/api/sendOrderData/', {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ "message": urlList }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Success:', data.message);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+
+  }
 
 //////////
 
