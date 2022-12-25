@@ -112,7 +112,6 @@ function callForCompletedOrderData() {
   }
 
   console.log("urlList", urlList) 
- // console.log("urlList", urlList) 
 
   return (
     <div className="App">
