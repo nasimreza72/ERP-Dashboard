@@ -111,8 +111,7 @@ function callForCompletedOrderData() {
       })  
   }
 
-  // console.log("urlList", urlList) 
-  // Added some test
+  console.log("urlList", urlList) 
 
   return (
     <div className="App">
