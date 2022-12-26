@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
   const [urlList, setUrlList] = useState("");
   const [helperVeribale, setHelperVeriable] = useState(false);
-  const [url, setUrl] = useState("");
+  //const [url, setUrl] = useState(""); // Using for post request
 
   const dateRef = useRef("Please add date");
   const dateRef2 = useRef("Please add date");
@@ -25,7 +25,7 @@ function App() {
         let endDate = new Date(dateRef2.current.value ?
 
           (inputDate.getUTCMonth() + 1 + "-" + Number(inputDate.getUTCDate()) + "-" + inputDate.getUTCFullYear())
-          : new Date()); //Date formet (year-month-date)
+          : new Date());
         // let endDate = new Date(); // will get automatically today's date or else type date manually
 
         let resultProductData = result.filter(order => {
@@ -34,10 +34,6 @@ function App() {
         });
 
         setUrlList(resultProductData)
-
-        ////////// 
-
-        // setUrlList(result)
 
       });
   }
@@ -50,7 +46,7 @@ function App() {
     setHelperVeriable(true)
 
     let url = process.env.REACT_APP_API_URL
-    
+
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -96,27 +92,26 @@ function App() {
 
   //////////
 
-  function addToDatabase() {
-    let sendUrl = {
-      preSendUrl: url,
-    };
+  // function addToDatabase() {
+  //   let sendUrl = {
+  //     preSendUrl: url,
+  //   };
 
-    fetch("http://localhost:3001/api/url/", {
-      method: "POST",
-      body: JSON.stringify({ sendUrl }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.message) {
-          alert("Url exist")
-        } else {
-          alert("successfully added")
-        }
-      })
-  }
-
-  console.log("urlList", urlList)
+  //   fetch("http://localhost:3001/api/url/", {
+  //     method: "POST",
+  //     body: JSON.stringify({ sendUrl }),
+  //     headers: { "Content-Type": "application/json" },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       if (result.message) {
+  //         alert("Url exist")
+  //       } else {
+  //         alert("successfully added")
+  //       }
+  //     })
+  // }
+  // console.log("urlList", urlList)
 
   return (
     <div className="App">
@@ -135,23 +130,6 @@ function App() {
         </div>
 
         <div className="orderTableParent">
-
-          {/* { helperVeribale ? 
-        
-          ( urlList ? urlList.map((item) =>
-
-            <div className="orderDataTable" key={item.id}> 
-
-              <div> <span> Order id - </span>  { "#" + item.id } </div>
-              <div> <span> Status - </span>{ item.status }</div>
-              <div> <span> Total - </span>{ item.total }</div>
-              <div> <span> Order Created - </span>{ item.date_created.replace("T", " Time ") }</div>
-              <div> <span> Order Shipped - </span>{ item.date_completed? item.date_completed.replace("T", " Time "): item.shipping_status}</div>
-              
-            </div> ) : "Loading ........")  
-
-         : "" } */}
-
 
           <table cellPadding="0" cellSpacing="0">
             <thead>
