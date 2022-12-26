@@ -13,8 +13,7 @@ function App() {
 
     setHelperVeriable(true)
 
-    let url = "https://staging31.henrikk.sg-host.com/two/en/wp-json/wc/v3/orders?consumer_key=ck_b51b515df3f1dad1e258662058d23e36d856f673&consumer_secret=cs_17ca613d0bb25fcd36852fb305a4e14925c2be08";
-
+    let url = process.env.REACT_APP_API_URL
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -24,7 +23,7 @@ function App() {
         let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
         let inputDate = new Date(dateRef2.current.value)
         let endDate = new Date(dateRef2.current.value ?
-          
+
           (inputDate.getUTCMonth() + 1 + "-" + Number(inputDate.getUTCDate()) + "-" + inputDate.getUTCFullYear())
           : new Date()); //Date formet (year-month-date)
         // let endDate = new Date(); // will get automatically today's date or else type date manually
@@ -50,8 +49,8 @@ function App() {
 
     setHelperVeriable(true)
 
-    let url = "https://staging31.henrikk.sg-host.com/two/en/wp-json/wc/v3/orders?consumer_key=ck_b51b515df3f1dad1e258662058d23e36d856f673&consumer_secret=cs_17ca613d0bb25fcd36852fb305a4e14925c2be08";
-
+    let url = process.env.REACT_APP_API_URL
+    
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
