@@ -51,7 +51,6 @@ button, input{
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
-
 .App-link {
   color: #61dafb;
 }
@@ -60,5 +59,10 @@ tr, th, td{
 padding: 10px;
 border: 1px solid gray;
 box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+thead{
+  background-color: #44a3d6e2;
+  color: white;
 }
 
