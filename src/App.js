@@ -38,15 +38,13 @@ function App() {
       });
   }
 
-  ////// Call database for shipped ored
-
+  ////// Call database for only completed order
 
   function callForCompletedOrderData() {
 
     setHelperVeriable(true)
 
     let url = process.env.REACT_APP_API_URL
-
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -70,27 +68,29 @@ function App() {
       });
   }
 
-  if (urlList && helperVeribale == true) {
+  // Send post request
+
+  // if (urlList && helperVeribale == true) {
 
 
-    fetch('http://localhost:3001/api/sendOrderData/', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ "message": urlList }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data.message);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+  //   fetch('http://localhost:3001/api/sendOrderData/', {
+  //     method: 'POST', // or 'PUT'
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ "message": urlList }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('Success:', data.message);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
 
-  }
+  // }
 
-  //////////
+  // Post request
 
   // function addToDatabase() {
   //   let sendUrl = {
@@ -143,24 +143,18 @@ function App() {
                 <th>Order shipped</th>
               </tr>
             </thead>
-
             <tbody>
               {helperVeribale ?
-
                 (urlList ? urlList.map((item) =>
-
                   <tr key={item.id}>
-
-                    <td> {item.id} </td>
-                    <td> {item.billing.first_name} </td>
-                    <td> {item.billing.last_name} </td>
-                    <td> {item.status} </td>
-                    <td> {item.total} </td>
-                    <td> {item.date_created.replace("T", " at ")} </td>
-                    <td> {item.date_completed ? item.date_completed.replace("T", " at ") : item.shipping_status} </td>
-
+                    <td>{item.id}</td>
+                    <td>{item.billing.first_name}</td>
+                    <td>{item.billing.last_name}</td>
+                    <td>{item.status}</td>
+                    <td>{item.total}</td>
+                    <td>{item.date_created.replace("T", " at ")}</td>
+                    <td>{item.date_completed ? item.date_completed.replace("T", " at ") : item.shipping_status}</td>
                   </tr>) : "Loading ........")
-
                 : ""}
             </tbody>
           </table>
