@@ -1,17 +1,43 @@
 
 .App-header {
-  /* background: radial-gradient(circle at 12.3% 19.3%, rgb(61, 63, 209) 0%, rgb(53, 90, 105) 100.2%); */
   min-height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   /* font-size: calc(10px + 2vmin); */
   color: rgb(39, 39, 39);
   scroll-behavior: smooth;
 }
 
-.App-header img {
-margin-top: 20px;
+.wrapper{
+  display: flex;
+}
+
+.buttonList{
+  display: block;
+  width: 250px;
+  height: 100vh;
+  background: radial-gradient(circle at 10% 20%, rgb(55, 209, 255) 0%, rgba(14, 32, 111, 0.744) 100.2%);
+}
+
+.buttonList button{
+  width: 94%;
+  height: 40px;
+  margin: 1.5% 3%;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid gray;
+  outline: none;
+  background: #7169CA;
+  color: white;
+  font-size: medium;
+  font-weight: bolder;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: .25s ease-in-out;
+}
+
+.buttonList button:hover{
+  border: 2px solid white;
 }
 
 .dateWrapper{
@@ -21,27 +47,63 @@ margin-top: 20px;
 }
 
 .orderTableParent{
-  margin-top: 15px;
+  width: 100%;
+  text-align: center;
 }
 
-.orderDataTable{
-  margin-top: 5px;
-  border: 1px solid gray;
+.productCount{
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 5px;
+  width: 100%;
+  height: 80px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background: radial-gradient(circle at 10% 20%, rgb(55, 209, 255) 0%, rgb(14, 31, 111) 100.2%);
 }
 
-.orderDataTable div{
-   padding: 5px 10px;
-}
-
-
-.buttonList{
+.productCount .productCountWrapper{
+  width: 18%;
+  height: 95%;
+  border-radius: 5px;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-button, input{
-  margin: 10px 5px;
-  font-size: large;
+.productCount .productCountWrapper1{
+  background-color: #36cd3bf0;
+}
+.productCount .productCountWrapper2{
+  background: #FBBF46;
+}
+.productCount .productCountWrapper3{
+  background-color: #7169CA;
+}
+.productCount .productCountWrapper4{
+  background: #E86E67;
+}
+.productCount .productCountWrapper5{
+  background: #31B4D8;
+}
+
+.productCount .productCountWrapper .productCountWrapperNumber div:first-child{
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.companyLogo{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+input{
+  margin: 10px;
   padding: 5px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -62,7 +124,11 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 
 }
 
 thead{
-  background-color: #44a3d6e2;
+  background: radial-gradient(circle at 10% 20%, rgb(49, 188, 230) 0%, rgb(14, 31, 111) 100.2%);
   color: white;
+}
+table{
+  width: 100%;
+  overflow: scroll;
 }
 
