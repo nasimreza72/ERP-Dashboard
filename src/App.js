@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
   const [urlList, setUrlList] = useState("");
   const [helperVeribale, setHelperVeriable] = useState(false);
+  const [completed, setCompleted] = useState(false);
   //const [url, setUrl] = useState(""); // Using for post request
 
   const dateRef = useRef("Please add date");
@@ -27,7 +28,7 @@ function App() {
           (inputDate.getUTCMonth() + 1 + "-" + Number(inputDate.getUTCDate()) + "-" + inputDate.getUTCFullYear())
           : new Date());
         // let endDate = new Date(); // will get automatically today's date or else type date manually
-
+          
         let resultProductData = result.filter(order => {
           let date = new Date(order.date_created);
           return (date >= startDate && date <= endDate.setHours(24.00));
@@ -41,6 +42,8 @@ function App() {
   ////// Call database for only completed order
 
   function callForCompletedOrderData() {
+
+    console.log(completed)
 
     setHelperVeriable(true)
 
@@ -173,7 +176,7 @@ function App() {
         <div className="wrapper">
 
           <div className="buttonList">
-            <button onClick={() => callDatabase()}>All Orders</button>
+            <button onClick={() => callDatabase(setCompleted(true))}>All Orders</button>
             <button onClick={() => callForCompletedOrderData()}>Completed Orders</button>
             <button onClick={() => callForCompletedOrderData()}>Processing Orders</button>
             <button onClick={() => callForCompletedOrderData()}>Refunded Orders</button>
