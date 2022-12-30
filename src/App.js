@@ -1,18 +1,19 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [urlList, setUrlList] = useState("");
   const [helperVeribale, setHelperVeriable] = useState(false);
-  const [completed, setCompleted] = useState(false);
+  const [pr, setPr] = useState("");
+
   //const [url, setUrl] = useState(""); // Using for post request
 
   const dateRef = useRef("Please add date");
   const dateRef2 = useRef("Please add date");
 
   function callDatabase() {
-
-    setHelperVeriable(true)
+    
+   setHelperVeriable(true)
 
     let url = process.env.REACT_APP_API_URL
     fetch(url)
@@ -39,37 +40,99 @@ function App() {
       });
   }
 
-  ////// Call database for only completed order
 
-  function callForCompletedOrderData() {
+useEffect(() => {
 
-    console.log(completed)
-
-    setHelperVeriable(true)
+  //  setHelperVeriable(true)
 
     let url = process.env.REACT_APP_API_URL
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
 
+        ////////////// Filtered by status
+      
+        let filteredByStatusData = result.filter(order => {
+          return order.status == pr
+        });
+
         ////////////// Filtered by Date
 
         let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
         let endDate = new Date(); // will get automatically today's date or else type date manually
 
-        let getCompletedOrderData = result.filter(order => {
-          return order.status == "completed"
-        });
-
-        let getCompletedOrderDataFilteredByDate = getCompletedOrderData.filter(order => {
+        let filteredByDate = filteredByStatusData.filter(order => {
           let date = new Date(order.date_created);
           return (date >= startDate && date <= endDate);
         });
 
-        setUrlList(getCompletedOrderDataFilteredByDate)
+        setUrlList(filteredByDate)
 
       });
-  }
+}, [pr] )
+
+
+  ////// Call database for only completed order
+
+  // function callForCompletedOrderData() {
+
+  //   setHelperVeriable(true)
+
+  //   let url = process.env.REACT_APP_API_URL
+  //   fetch(url)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+
+  //       ////////////// Filtered by Date
+
+  //       let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
+  //       let endDate = new Date(); // will get automatically today's date or else type date manually
+
+  //       let getCompletedOrderData = result.filter(order => {
+  //         return order.status == pr
+  //       });
+
+  //       let getCompletedOrderDataFilteredByDate = getCompletedOrderData.filter(order => {
+  //         let date = new Date(order.date_created);
+  //         return (date >= startDate && date <= endDate);
+  //       });
+
+  //       setUrlList(getCompletedOrderDataFilteredByDate)
+
+  //     });
+  // }
+
+    ////// Call database for only processing order
+
+  // function callForProcessingOrderData() {
+
+
+  //   setHelperVeriable(true)
+
+  //   let url = process.env.REACT_APP_API_URL
+  //   fetch(url)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+
+  //       ////////////// Filtered by Date
+
+  //       let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
+  //       let endDate = new Date(); // will get automatically today's date or else type date manually
+
+  //       let getCompletedOrderData = result.filter(order => {
+  //         return order.status == "processing"
+  //       });
+
+  //       let getCompletedOrderDataFilteredByDate = getCompletedOrderData.filter(order => {
+  //         let date = new Date(order.date_created);
+  //         return (date >= startDate && date <= endDate);
+  //       });
+
+  //       setUrlList(getCompletedOrderDataFilteredByDate)
+
+  //     });
+  // }
+
 
   // Send post request
 
@@ -176,15 +239,15 @@ function App() {
         <div className="wrapper">
 
           <div className="buttonList">
-            <button onClick={() => callDatabase(setCompleted(true))}>All Orders</button>
-            <button onClick={() => callForCompletedOrderData()}>Completed Orders</button>
-            <button onClick={() => callForCompletedOrderData()}>Processing Orders</button>
-            <button onClick={() => callForCompletedOrderData()}>Refunded Orders</button>
-            <button onClick={() => callForCompletedOrderData()}>On Hold Orders</button>
-            <button onClick={() => callForCompletedOrderData()}>Canceled Orders</button>
-            <button onClick={() => callForCompletedOrderData()}>Failed Orders</button>
-            <button onClick={() => callForCompletedOrderData()}>Pending payment</button>
-            <button onClick={() => callForCompletedOrderData()}>Checkout draft</button>
+            <button onClick={() => callDatabase()}>All Orders</button>
+            <button onClick={() => setPr("completed")} >Completed Orders</button>
+            <button onClick={() => setPr("processing")}>Processing Orders</button>
+            <button onClick={() => setPr("refunded")}>Refunded Orders</button>
+            <button onClick={() => setPr("on-hold")}>On Hold Orders</button>
+            <button onClick={() => setPr("cancelled")}>Cancelled Orders</button>
+            <button onClick={() => setPr("failed")}>Failed Orders</button>
+            <button onClick={() => setPr("pending")}>Pending payment</button>
+            <button onClick={() => setPr("refunded")}>Checkout draft</button>
           </div>
 
           <div className="orderTableParent">
@@ -213,6 +276,7 @@ function App() {
               </thead>
               <tbody>
                 {helperVeribale ?
+
                   (urlList ? urlList.map((item) =>
                     <tr key={item.id}>
                       <td>{item.id}</td>
@@ -223,6 +287,7 @@ function App() {
                       <td>{item.date_created.replace("T", " at ").slice(0, -3)}</td>
                       <td>{item.date_completed ? item.date_completed.replace("T", " at ").slice(0, -3) : item.shipping_status}</td>
                     </tr>) : "Loading ........")
+
                   : ""}
               </tbody>
             </table>
