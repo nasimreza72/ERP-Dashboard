@@ -43,7 +43,7 @@ function App() {
 
 useEffect(() => {
 
-  //  setHelperVeriable(true)
+  setHelperVeriable(true)
 
     let url = process.env.REACT_APP_API_URL
     fetch(url)
@@ -64,80 +64,15 @@ useEffect(() => {
         let filteredByDate = filteredByStatusData.filter(order => {
           let date = new Date(order.date_created);
           return (date >= startDate && date <= endDate);
-        });
-
+        });   
         setUrlList(filteredByDate)
-
       });
 }, [pr] )
 
 
-  ////// Call database for only completed order
-
-  // function callForCompletedOrderData() {
-
-  //   setHelperVeriable(true)
-
-  //   let url = process.env.REACT_APP_API_URL
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-
-  //       ////////////// Filtered by Date
-
-  //       let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
-  //       let endDate = new Date(); // will get automatically today's date or else type date manually
-
-  //       let getCompletedOrderData = result.filter(order => {
-  //         return order.status == pr
-  //       });
-
-  //       let getCompletedOrderDataFilteredByDate = getCompletedOrderData.filter(order => {
-  //         let date = new Date(order.date_created);
-  //         return (date >= startDate && date <= endDate);
-  //       });
-
-  //       setUrlList(getCompletedOrderDataFilteredByDate)
-
-  //     });
-  // }
-
-    ////// Call database for only processing order
-
-  // function callForProcessingOrderData() {
-
-
-  //   setHelperVeriable(true)
-
-  //   let url = process.env.REACT_APP_API_URL
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-
-  //       ////////////// Filtered by Date
-
-  //       let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
-  //       let endDate = new Date(); // will get automatically today's date or else type date manually
-
-  //       let getCompletedOrderData = result.filter(order => {
-  //         return order.status == "processing"
-  //       });
-
-  //       let getCompletedOrderDataFilteredByDate = getCompletedOrderData.filter(order => {
-  //         let date = new Date(order.date_created);
-  //         return (date >= startDate && date <= endDate);
-  //       });
-
-  //       setUrlList(getCompletedOrderDataFilteredByDate)
-
-  //     });
-  // }
-
-
-  // Send post request
+  // Send post request ----->
 
   // if (urlList && helperVeribale == true) {
-
 
   //   fetch('http://localhost:3001/api/sendOrderData/', {
   //     method: 'POST', // or 'PUT'
@@ -287,7 +222,6 @@ useEffect(() => {
                       <td>{item.date_created.replace("T", " at ").slice(0, -3)}</td>
                       <td>{item.date_completed ? item.date_completed.replace("T", " at ").slice(0, -3) : item.shipping_status}</td>
                     </tr>) : "Loading ........")
-
                   : ""}
               </tbody>
             </table>
