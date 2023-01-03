@@ -234,5 +234,4 @@ useEffect(() => {
   );
 }
 
-
 export default App;
