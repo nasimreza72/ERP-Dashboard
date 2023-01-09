@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [urlList, setUrlList] = useState("");
+  const [specificData, setSpecificData] = useState(false);
   const [helperVeribale, setHelperVeriable] = useState(false);
   const [pr, setPr] = useState("");
 
@@ -11,11 +12,12 @@ function App() {
   const dateRef = useRef("Please add date");
   const dateRef2 = useRef("Please add date");
 
+  let url = process.env.REACT_APP_API_URL
+
   function callDatabase() {
     
    setHelperVeriable(true)
 
-    let url = process.env.REACT_APP_API_URL
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -41,11 +43,27 @@ function App() {
   }
 
 
+  function getAllDetails(e){
+
+    fetch(url)
+    .then((response) => response.json())
+    .then((result) => {
+  
+      let resultProductData = result.filter(order => {
+        return e==order.id
+      });
+
+      setSpecificData(resultProductData[0])
+    });
+
+  }
+
+
+
 useEffect(() => {
 
-  setHelperVeriable(true)
+ setHelperVeriable(true)
 
-    let url = process.env.REACT_APP_API_URL
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -68,7 +86,6 @@ useEffect(() => {
         setUrlList(filteredByDate)
       });
 }, [pr] )
-
 
   // Send post request ----->
 
@@ -116,7 +133,7 @@ useEffect(() => {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
 
         <div className="productCount">
 
@@ -187,8 +204,7 @@ useEffect(() => {
 
           <div className="orderTableParent">
 
-
-            <img className="companyLogo" src="https://henrikk.sg-host.com/two/wp-content/uploads/2022/12/advancedpharmacy.png" alt="Logo" />
+            <img className="companyLogo" src="https://advancedpharmacy.eu/two/wp-content/uploads/2022/12/advancedpharmacy.png" alt="Logo" />
 
             <div className="dateWrapper">
               <p>From</p>
@@ -210,10 +226,10 @@ useEffect(() => {
                 </tr>
               </thead>
               <tbody>
-                {helperVeribale ?
+                {helperVeribale &&
 
-                  (urlList ? urlList.map((item) =>
-                    <tr key={item.id}>
+                  (urlList && urlList.map((item) =>
+                    <tr key={item.id} onClick={()=> getAllDetails(item.id)}>
                       <td>{item.id}</td>
                       <td>{item.billing.first_name}</td>
                       <td>{item.billing.last_name}</td>
@@ -221,15 +237,18 @@ useEffect(() => {
                       <td>€ {item.total}</td>
                       <td>{item.date_created.replace("T", " at ").slice(0, -3)}</td>
                       <td>{item.date_completed ? item.date_completed.replace("T", " at ").slice(0, -3) : item.shipping_status}</td>
-                    </tr>) : "Loading ........")
-                  : ""}
+                    </tr>))
+                      }
               </tbody>
             </table>
 
           </div>
 
         </div>
-      </header>
+
+        {setSpecificData && <div className="specificData" onClick={() => setSpecificData(true)}>{specificData.status}</div> }
+
+      </div>
     </div>
   );
 }

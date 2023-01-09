@@ -128,3 +128,15 @@ table{
   overflow: scroll;
 }
 
+tbody tr{
+  cursor: pointer;
+}
+
+.specificData{
+  position: fixed;
+  top: 45vh;
+  left: 45vw;
+  background-color: #31B4D8;
+}
+
+
