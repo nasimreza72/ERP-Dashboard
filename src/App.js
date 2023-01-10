@@ -44,25 +44,17 @@ function App() {
 
 
   function getAllDetails(e){
-
     fetch(url)
     .then((response) => response.json())
     .then((result) => {
-  
-      let resultProductData = result.filter(order => {
-        return e==order.id
-      });
-
+      let resultProductData = result.filter(order => e==order.id);
       setSpecificData(resultProductData[0])
     });
-
   }
-
-
 
 useEffect(() => {
 
- setHelperVeriable(true)
+setHelperVeriable(true)
 
     fetch(url)
       .then((response) => response.json())
