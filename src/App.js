@@ -1,11 +1,45 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
+import Posts from './components/Posts';
+import Pagination from './components/Pagination';
+import axios from 'axios';
 
 function App() {
   const [urlList, setUrlList] = useState("");
   const [specificData, setSpecificData] = useState(false);
   const [helperVeribale, setHelperVeriable] = useState(false);
   const [pr, setPr] = useState("");
+
+
+//////////// Start of pagination
+
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      setPosts(res.data);
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, []);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+
+//////////// End of pagination
+
 
   //const [url, setUrl] = useState(""); // Using for post request
 
@@ -22,8 +56,7 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
 
-        ////////////// Filtered by Date
-
+      ////////////// Filtered by Date
         let startDate = new Date(dateRef.current.value ? dateRef.current.value : null); //Date formet (year-month-date)
         let inputDate = new Date(dateRef2.current.value)
         let endDate = new Date(dateRef2.current.value ?
@@ -41,7 +74,6 @@ function App() {
 
       });
   }
-
 
   function getAllDetails(e){
     fetch(url)
@@ -233,6 +265,36 @@ setHelperVeriable(true)
                       }
               </tbody>
             </table>
+
+
+
+
+
+
+
+      <Posts posts={currentPosts} loading={loading} />
+
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
+
+
+
+
+
+
+            <div className="pageCount">
+
+              {urlList.length > 0 ?
+              
+             <>{Math.ceil(urlList.length/5)}</>
+        
+              : ""}
+
+            </div>
+
 
           </div>
 
