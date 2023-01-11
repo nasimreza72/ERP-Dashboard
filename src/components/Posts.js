@@ -1,5 +1,5 @@
 import React from "react";
-import "../../src/App.css"
+import "./style.css"
 
 const Posts = ({ posts, loading, filterdeData }) => {
   if (loading) {
