@@ -1,8 +1,10 @@
 import React from "react";
+import "../../src/App.css"
 
 const Posts = ({ posts, loading, filterdeData }) => {
   if (loading) {
-    return <h2>Loading...</h2>;
+    // return <h2>Loading...</h2>;
+  return <span class="loader"></span>
   }
 
   return (
