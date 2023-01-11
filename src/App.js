@@ -32,9 +32,6 @@ function App() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  //////////// End of pagination
-
-  //const [url, setUrl] = useState(""); // Using for post request
 
   const dateRef = useRef("Please add date");
   const dateRef2 = useRef("Please add date");
