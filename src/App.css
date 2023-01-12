@@ -53,14 +53,14 @@
   align-items: center;
   padding: 15px 5px;
   width: 100%;
-  height: 80px;
+  height: 100px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background: radial-gradient(circle at 10% 20%, rgb(55, 209, 255) 0%, rgb(14, 31, 111) 100.2%);
 }
 
 .productCount .productCountWrapper{
   width: 18%;
-  height: 95%;
+  height: 70px;
   border-radius: 5px;
   display: flex;
   justify-content: space-around;
@@ -138,6 +138,9 @@ tbody tr{
   left: 45vw;
   background-color: #31B4D8;
 }
+
+
+
 
 .loader {
   width: 75px;
