@@ -3,11 +3,12 @@ import "./style.css"
 
 const Posts = ({ posts, loading, filterdeData }) => {
   if (loading) {
-    // return <h2>Loading...</h2>;
   return <span class="loader"></span>
   }
 
+
   return (
+    <>
     <div className="list-group mb-4">
       <table>
         <thead>
@@ -40,8 +41,9 @@ const Posts = ({ posts, loading, filterdeData }) => {
             ))}
         </tbody>
       </table>
+      
     </div>
-  );
+    </> );
 };
 
 export default Posts;
