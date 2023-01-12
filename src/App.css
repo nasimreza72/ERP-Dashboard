@@ -53,14 +53,14 @@
   align-items: center;
   padding: 15px 5px;
   width: 100%;
-  height: 80px;
+  height: 100px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background: radial-gradient(circle at 10% 20%, rgb(55, 209, 255) 0%, rgb(14, 31, 111) 100.2%);
 }
 
 .productCount .productCountWrapper{
   width: 18%;
-  height: 95%;
+  height: 70px;
   border-radius: 5px;
   display: flex;
   justify-content: space-around;
@@ -140,41 +140,3 @@ tbody tr{
 }
 
 
-
-
-.loader {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  position: relative;
-  animation: rotate 1s linear infinite
-}
-.loader::before , .loader::after {
-  content: "";
-  width: 75px;
-  height: 75px;
-  box-sizing: border-box;
-  position: absolute;
-  inset: 0px;
-  border-radius: 50%;
-  border: 7px solid #FFF;
-  animation: prixClipFix 2s linear infinite ;
-}
-.loader::after{
-  border-color: #1C5B9C;
-  animation: prixClipFix 2s linear infinite , rotate 0.5s linear infinite reverse;
-  inset: 6px;
-}
-
-@keyframes rotate {
-  0%   {transform: rotate(0deg)}
-  100%   {transform: rotate(360deg)}
-}
-
-@keyframes prixClipFix {
-    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
-    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
-    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
-    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
-}
