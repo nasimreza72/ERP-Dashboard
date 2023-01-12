@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Posts from "./components/Posts";
 import Pagination from "./components/Pagination";
+
+import DownloadPDF from "./download";
+
 import axios from "axios";
 
 function App() {
@@ -23,6 +26,25 @@ function App() {
  //   fetchPosts();
     
  // }, []);
+
+
+
+
+ const download = (opt) => {
+  DownloadPDF.downloadPage(
+    "Credit Card – Terms and Condition",
+    opt
+  ).then((res) => {});
+};
+
+
+
+
+
+
+
+
+
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -99,7 +121,7 @@ function App() {
   }, [pr]);
 
   return (
-    <div className="App">
+    <div className="App"  id="pdfDownload" >
       <div className="App-header">
         <div className="productCount">
           <div className="productCountWrapper productCountWrapper1">
@@ -236,7 +258,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="wrapper">
+        <div className="wrapper"  id="pdfEdge">
           <div className="buttonList">
             <button onClick={() => callDatabase()}>All Orders</button>
             <button onClick={() => setPr("completed")}>Completed Orders</button>
@@ -259,9 +281,9 @@ function App() {
             />
 
             <div className="dateWrapper">
-              <p>From</p>
+              <div>From</div>
               <input type="date" ref={dateRef}></input>
-              <p>Till</p>
+              <div>Till</div>
               <input type="date" ref={dateRef2}></input>
             </div>
 
@@ -272,9 +294,15 @@ function App() {
               totalPosts={posts.length}
               paginate={paginate}
             />
+
           </div>
+
         </div>
       </div>
+
+
+      <button onClick={() => download("1")}>BlobURL</button> 
+
     </div>
   );
 }
