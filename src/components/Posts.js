@@ -6,7 +6,6 @@ const Posts = ({ posts, loading, filterdeData }) => {
   return <span class="loader"></span>
   }
 
-
   return (
     <>
     <div className="list-group mb-4">
