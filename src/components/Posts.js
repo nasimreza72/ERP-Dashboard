@@ -10,7 +10,7 @@ const Posts = ({ posts, loading, filterdeData }) => {
   return (
     <>
     <div className="list-group mb-4">
-      <table>
+      <table  id="pdfEdge">
         <thead>
           <tr>
             <th>Order number</th>

@@ -8,12 +8,12 @@ class DownloadPDF {
     let opt = {
       margin: margin,
       enableLinks: true,
-      dpi: 600,
+      dpi: 300,
       backgroundColor: "#FF0",
       filename: title + ".pdf",
       image: { type: "jpeg", quality: 0.9 },
       html2canvas: { scale: 1 },
-      jsPDF: { unit: "in", format: "A4", orientation: "portrait" },
+      jsPDF: { unit: "in", format: "A3", orientation: "portrait" },
       pagebreak: { mode: ["avoid-all", "css", "legacy"] }
     };
     return await html2pdf()
@@ -47,41 +47,7 @@ class DownloadPDF {
               "testfile.pdf",
               "application/pdf"
             );
-            // console.log(pdfObject.output("blob"));
-            // var reader = new FileReader();
-            // reader.readAsDataURL(pdfObject.output("blob"));
-            // reader.onloadend = function () {
-            //   var base64String = reader.result;
-            //   console.log("Base64 String - ", base64String);
-            //   console.log(
-            //     "Base64 String without Tags- ",
-            //     base64String.substr(base64String.indexOf(", ") + 1)
-            //   );
-            //   saveAs(
-            //     base64String.substr(base64String.indexOf(", ") + 1),
-            //     title + ".pdf"
-            //   );
-            // };
-            // var reader = new FileReader();
-            // reader.onload = function() {
-            // var bdata = btoa(reader.result);
-            // var datauri = 'data:' + isbContentType + ';base64,' + bdata;
-            // window.open(datauri);
-            //  newWindow = setTimeout(function() {
-            //   newWindow.document.title = isbFilename;
-            //  }, 10);
-            // };
-            // reader.readAsBinaryString(iobBLOB);
-            // var blob = pdfObject.output("blob", {
-            //   Type: "application/pdf"
-            // });
-            // var reader = new FileReader();
-            // reader.onload = function (e) {
-            //   window.location.href = reader.result;
-            //   // window.saveAs(reader.result, title + ".pdf");
-            // };
-            // reader.readAsDataURL(blob);
-            // console.log(reader.result);
+  
           }
           //#### 3.Webkit
           if (formnumber === "3") {
