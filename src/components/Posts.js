@@ -44,5 +44,4 @@ const Posts = ({ posts, loading, filterdeData }) => {
     </div>
     </> );
 };
-
 export default Posts;
