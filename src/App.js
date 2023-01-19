@@ -126,6 +126,11 @@ function App() {
           </div>
         </div>
       </div>
+
+
+      <button onClick={() => download("1")}>BlobURL</button> 
+
+
     </div>
   );
 }
