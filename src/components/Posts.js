@@ -6,11 +6,10 @@ const Posts = ({ posts, loading, filterdeData }) => {
   return <span class="loader"></span>
   }
 
-
   return (
     <>
     <div className="list-group mb-4">
-      <table>
+      <table  id="pdfEdge">
         <thead>
           <tr>
             <th>Order number</th>
@@ -45,5 +44,4 @@ const Posts = ({ posts, loading, filterdeData }) => {
     </div>
     </> );
 };
-
 export default Posts;
