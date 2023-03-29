@@ -54,14 +54,16 @@ function App() {
 
 //////////////////// Testing
 
-
-
-  fetch("https://staging45.advancedpharmacy.eu/two/en/wp-json/wc/v3/orders/2465?consumer_key=ck_81053d3cac3b50c4a4fd401c260de1a38bb9919c&consumer_secret=cs_ee7f667a77364929f7c9a37432d4fb6ff1d3e754")
+useEffect(() => {
+  fetch("https://staging87.advancedpharmacy.eu/green/de/wp-json/wc/v3/orders/2465?consumer_key=ck_5eebd818583e24974632065506d94ddc635aea70&consumer_secret=cs_eba5bc2813c5fbd4a7508a18df46da10cadce662")
   .then((response) => response.json())
   .then((result) => {
     console.log("From wooCommerce", result)
   })
+}, [pr]);
 
+
+ 
 
    ////////////// Filtered by status
 
@@ -106,7 +108,7 @@ function App() {
           </div>
           <div className="orderTableParent">
             <img className="companyLogo"
-              src="https://advancedpharmacy.eu/two/wp-content/uploads/2022/12/advancedpharmacy.png"
+              src="https://advancedpharmacy.eu/green/wp-content/uploads/2022/12/advancedpharmacy.png"
               alt="Logo"/>
             <div className="dateWrapper">
               <div>From</div>
