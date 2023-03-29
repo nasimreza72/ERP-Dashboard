@@ -55,13 +55,12 @@ function App() {
 //////////////////// Testing
 
 useEffect(() => {
-  fetch("https://staging87.advancedpharmacy.eu/green/de/wp-json/wc/v3/orders/2465?consumer_key=ck_5eebd818583e24974632065506d94ddc635aea70&consumer_secret=cs_eba5bc2813c5fbd4a7508a18df46da10cadce662")
+  fetch("https://staging87.advancedpharmacy.eu/green/de/wp-json/wc/v3/orders?consumer_key=ck_5eebd818583e24974632065506d94ddc635aea70&consumer_secret=cs_eba5bc2813c5fbd4a7508a18df46da10cadce662")
   .then((response) => response.json())
   .then((result) => {
     console.log("From wooCommerce", result)
   })
 }, [pr]);
-
 
  
 
@@ -73,6 +72,7 @@ useEffect(() => {
     fetch(url)
     .then((response) => response.json())
     .then((result) => {
+      console.log("result--------------", result)
     let filteredByStatusData = result.filter((order) => {
       return order.status == pr;
     });
@@ -108,7 +108,7 @@ useEffect(() => {
           </div>
           <div className="orderTableParent">
             <img className="companyLogo"
-              src="https://advancedpharmacy.eu/green/wp-content/uploads/2022/12/advancedpharmacy.png"
+              src="https://cdn-icons-png.flaticon.com/512/5332/5332224.png" width={150}
               alt="Logo"/>
             <div className="dateWrapper">
               <div>From</div>
