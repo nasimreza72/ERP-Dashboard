@@ -12,6 +12,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [pr, setPr] = useState("");
+  const [helper, setHelper] = useState("");
 
   const dateRef = useRef("Please add date");
   const dateRef2 = useRef("Please add date");
@@ -55,12 +56,10 @@ function App() {
 //////////////////// Testing
 
 useEffect(() => {
-  fetch("https://staging87.advancedpharmacy.eu/green/de/wp-json/wc/v3/orders?consumer_key=ck_5eebd818583e24974632065506d94ddc635aea70&consumer_secret=cs_eba5bc2813c5fbd4a7508a18df46da10cadce662")
-  .then((response) => response.json())
-  .then((result) => {
-    console.log("From wooCommerce", result)
-  })
-}, [pr]);
+
+  fetch("http://localhost:3030/updateDB")
+
+}, [helper]);
 
    ////////////// Filtered by status
 
