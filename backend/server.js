@@ -24,7 +24,8 @@ app.get("/updateDB", async (req, res) => {
   .then((response) => response.json())
   .then((result) => {
 
-   wooDB.create({wooCommerceDB: {"DATALIST": DBLIST[0].wooCommerceDB[0]}})
+   //wooDB.create({wooCommerceDB: {"DATALIST": DBLIST[0].wooCommerceDB[0]}})
+   wooDB.create({wooCommerceDB: {"DATALIST": {name: "---Nasim---"}}})
    .then((wooDB) => res.send("successfully created"))
    .catch((e) => {
      console.log(e);
