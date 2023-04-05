@@ -5,7 +5,7 @@ export function connect() {
    //  const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env
     const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env
    // const connStr = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`
-    const connStr = `mongodb+srv://nasim:Nasim_1993@cluster0.wlorexc.mongodb.net/?retryWrites=true&w=majority`
+    const connStr = `mongodb+srv://nasim:(password)@cluster0.wlorexc.mongodb.net/?retryWrites=true&w=majority`
 
 
     // Mongoose connection events
